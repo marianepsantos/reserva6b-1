@@ -11,5 +11,5 @@ const PaginaPerfil = () =>{
         </div>
     )
 }
-
+  
 export default PaginaPerfil;

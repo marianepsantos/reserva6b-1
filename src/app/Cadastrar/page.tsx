@@ -1,22 +1,22 @@
-
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import styles from "./login.module.css";
+import { useRouter } from 'next/router';
+import styles from "./cadastrar.module.css";
 import Button from "../components/button";
 
-export default function Login() {
+export default function Cadastrar() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [errologin, setErroLogin] = useState('');
+    const [usuario, setUsuario] = useState('');
+    
 
-    const login = () => {
+    const cadastrar = () => {
     
         if (email === 'Ifms@gmail.com' && senha === '123') {
 
         } else {
-            setErroLogin('Email ou senha incorretos');
+            setUsuario('Email ou senha incorretos');
         }
     };
 
@@ -26,9 +26,9 @@ export default function Login() {
                 name="Info 6B"
                 numero={1}
             />
-            <h1 className={styles.center}>PÁGINA PARA LOGIN</h1>
+            <h1 className={styles.center}>Página de Cadastro</h1>
             <br />
-            <form onSubmit={login}>
+            <form onSubmit={cadastrar}>
                 <center>
                     <input
                         className={styles.input}
@@ -48,8 +48,17 @@ export default function Login() {
                     />
                     <br />
                     <br />
-                    <button className={styles.button} type="submit">Login</button>
-                    {errologin && <p className={styles.p}>{errologin}</p>}
+                    <input
+                        className={styles.input}
+                        type="password"
+                        placeholder="Usuário"
+                        value={usuario}
+                        onChange={(e) => setUsuario(e.target.value)}
+                    />
+                    <br />
+                    <br />
+                    <button className={styles.button} type="submit">Cadastrar</button>
+                  
                 </center>
             </form>
         </div>
