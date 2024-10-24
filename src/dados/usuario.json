@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "nome":"Mariane",
+        "email":"mariane.ifms@gmail.com",
+        "password":"123",
+        "tipo":"adm"
+    },
+    {
+        "id": 2,
+        "nome":"Mikaelly",
+        "email":"mikaelly.ifms@gmail.com",
+        "password":"123",
+        "tipo":"cliente"
+    }
+]

@@ -13,10 +13,10 @@ export default function Cadastrar() {
 
     const cadastrar = () => {
     
-        if (email === 'Ifms@gmail.com' && senha === '123') {
+        if (email === 'Ifms@gmail.com' && senha === '123' && usuario === 'Mariane') {
 
         } else {
-            setUsuario('Email ou senha incorretos');
+            setUsuario('Usuário Cadastrado');
         }
     };
 
@@ -50,7 +50,7 @@ export default function Cadastrar() {
                     <br />
                     <input
                         className={styles.input}
-                        type="password"
+                        type="usuario"
                         placeholder="Usuário"
                         value={usuario}
                         onChange={(e) => setUsuario(e.target.value)}

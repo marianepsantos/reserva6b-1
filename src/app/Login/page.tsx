@@ -1,15 +1,49 @@
 
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from "./login.module.css";
 import Button from "../components/button";
+import Usuario from '../Interfaces/usuario';
 
 export default function Login() {
 
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
     const [errologin, setErroLogin] = useState('');
+    const [usuario, setUsuario] = useState<Usuario[]>([
+        
+            {
+                id : 1,
+                nome:"Mariane",
+                email:"mariane.ifms@gmail.com",
+                password:"123",
+                tipo:"admin"
+            },
+
+            {
+                id : 2,
+                nome:"Mikaelly",
+                email:"mikaelly.ifms@gmail.com",
+                password:"123",
+                tipo:"cliente"
+            }
+    ])
+/*
+    const router = useRouter();
+    const onSubmit = (e: React.FormEvent<HTMLFormElement>{
+        e.preventDefault()
+        const usuario =usuario.find(user) => user.email == email && user password == senha
+    )
+    if(usuario){
+        logalStorage.setItem('usuario', JSON.stringify(usuario))
+        router.push('/home')
+    } else{
+        setError('Email ou senha inválido')
+    }
+    }
+*/
+
 
     const login = () => {
     
@@ -19,7 +53,14 @@ export default function Login() {
             setErroLogin('Email ou senha incorretos');
         }
     };
-
+/*
+    useEffect(() => {
+        fetch('/data.usuario.json')
+        .then((dados) => dados.json())
+        .then((dado) => console.log(dado))
+        .catch((error) => console.log(error))
+    }, [])
+*/
     return (
         <div>
             <Button 
