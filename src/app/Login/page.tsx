@@ -8,6 +8,15 @@ import Button from "../Components/button";
 import Usuario from '../Interfaces/usuario';
 import { ApiURL } from "../config";
 
+
+
+interface ResponseSignin {
+  erro: boolean,
+  mensagem: string,
+  token?: string
+}
+
+
 export default function Login() {
 
     const [email, setEmail] = useState<string>();
