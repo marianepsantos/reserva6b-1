@@ -15,6 +15,13 @@ export default function Login() {
     const [errologin, setErroLogin] = useState<string>();
     const router = useRouter();
    
+    useEffect(() => {
+        const {'ewstaurant-token': token} = parseCookies()
+            if (token){
+                router.push('/')
+            }
+    }, [])
+
 
     const  handleSubmit = async (e : FormEvent) => {
         e.preventDefault();
@@ -113,4 +120,4 @@ export default function Login() {
             </form>
         </div>
     );
-}
+    }

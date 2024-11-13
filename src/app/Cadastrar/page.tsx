@@ -8,16 +8,16 @@ import Usuario from '../Interfaces/usuario';
 
 export default function Cadastrar() {
     const router = useRouter();
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
+    const [email, setEmail] = useState<string>('');
+    const [senha, setSenha] = useState<string>('');
     const [usuario, setUsuario] = useState<usuario>({
         nome:'',
         email'',
-        password:,
-        tipo:'cliente'
+        password:'',
+        tipo:'cliente'            
     });
 
-    const [ErroCadastrar, setErroCadastrar] = useState('')
+    const [ErroCadastrar, setErroCadastrar] = useState<string | null>('')
 
     const cadastrar = () => {
     
