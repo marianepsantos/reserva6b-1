@@ -1,34 +1,52 @@
 
 'use client';
-import { useEffect, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { parseCookies, setCookie } from 'nookies';
 import { useRouter } from 'next/navigation';
 import styles from "./login.module.css";
-import Button from "../components/button";
+import Button from "../Components/button";
 import Usuario from '../Interfaces/usuario';
+import { ApiURL } from "../config";
 
 export default function Login() {
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [errologin, setErroLogin] = useState('');
-    const [usuario, setUsuario] = useState<Usuario[]>([
-        
-            {
-                id : 1,
-                nome:"Mariane",
-                email:"mariane.ifms@gmail.com",
-                password:"123",
-                tipo:"admin"
-            },
+    const [email, setEmail] = useState<string>();
+    const [senha, setSenha] = useState<string>();
+    const [errologin, setErroLogin] = useState<string>();
+    const router = useRouter();
+   
 
-            {
-                id : 2,
-                nome:"Mikaelly",
-                email:"mikaelly.ifms@gmail.com",
-                password:"123",
-                tipo:"cliente"
+    const  handleSubmit = async (e : FormEvent) => {
+        e.preventDefault();
+        try {
+         const response = await fetch(`${ApiURL}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type' : 'application/json'
+          },
+          body: JSON.stringify({email, senha})
+         })
+          if (response){
+            const data : ResponseSignin = await response.json()
+            const {erro, mensagem, token = ''} = data;
+            console.log(data)
+            if (erro){
+              setErroLogin(mensagem)
+            } else {
+              // npm i nookies setCookie
+              setCookie(undefined, 'restaurant-token', token, {
+                maxAge: 60*60*1 // 1 hora
+              } )
+              router.push('/')
             }
-    ])
+          } else {
+            setErroLogin("")
+  
+          }
+      } 
+       catch (error) {
+      console.error('Erro na requisicao', error)
+    }
 /*
     const router = useRouter();
     const onSubmit = (e: React.FormEvent<HTMLFormElement>{

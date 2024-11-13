@@ -1,31 +1,36 @@
 'use client';
 import { useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import styles from "./cadastrar.module.css";
-import Button from "../components/button";
+import Button from "../Components/button";
+import MyInput from '../Components/myinput';
+import Usuario from '../Interfaces/usuario';
 
 export default function Cadastrar() {
-
+    const router = useRouter();
     const [email, setEmail] = useState('');
     const [senha, setSenha] = useState('');
-    const [usuario, setUsuario] = useState('');
-    
+    const [usuario, setUsuario] = useState<usuario>({
+        nome:'',
+        email'',
+        password:,
+        tipo:'cliente'
+    });
+
+    const [ErroCadastrar, setErroCadastrar] = useState('')
 
     const cadastrar = () => {
     
         if (email === 'Ifms@gmail.com' && senha === '123' && usuario === 'Mariane') {
+            router.push('/')
 
         } else {
-            setUsuario('Usuário Cadastrado');
+            setErroCadastrar('Senha ou email errados');
         }
     };
 
     return (
         <div>
-            <Button 
-                name="Info 6B"
-                numero={1}
-            />
             <h1 className={styles.center}>Página de Cadastro</h1>
             <br />
             <form onSubmit={cadastrar}>
@@ -51,13 +56,14 @@ export default function Cadastrar() {
                     <input
                         className={styles.input}
                         type="usuario"
-                        placeholder="Usuário"
+                        placeholder="Insira o seu UserName"
                         value={usuario}
                         onChange={(e) => setUsuario(e.target.value)}
                     />
                     <br />
                     <br />
                     <button className={styles.button} type="submit">Cadastrar</button>
+                    {ErroCadastrar && <p>{ErroCadastrar}</p>}
                   
                 </center>
             </form>
