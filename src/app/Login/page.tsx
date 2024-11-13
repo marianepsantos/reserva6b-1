@@ -19,9 +19,9 @@ interface ResponseSignin {
 
 export default function Login() {
 
-    const [email, setEmail] = useState<string>();
-    const [password, setPassword] = useState<string>();
-    const [errologin, setErroLogin] = useState<string>();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errologin, setErroLogin] = useState("");
     const router = useRouter();
 
     useEffect(() => {
@@ -43,7 +43,7 @@ export default function Login() {
                 body: JSON.stringify({ email, password })
             })
             console.log()
-            
+
             if (response) {
                 const data: ResponseSignin = await response.json()
                 const { erro, mensagem, token = '' } = data;

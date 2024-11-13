@@ -1,78 +1,124 @@
 'use client';
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from "./page.module.css";
 import { ApiURL } from "../config";
+import Usuario from '../Interfaces/usuario';
 
-interface ResponseSignin {
-    erro: boolean,
-    mensagem: string,
-   
-} 
+
 
 
 export default function Cadastrar(){
     const router = useRouter();
-    const [usuario, setUsuario] = useState<string>(''); {
-        wsw
-    }
-  
-    const [ErroCadastrar, setErroCadastrar] = useState<string | null>('')
+    const [usuario, setUsuario] = useState<Usuario> ({
+        nome:'',
+        email:'',
+        password: '',
+        tipo: 'cliente'
+    });
+    const [ErroCadastrar, setErroCadastro] = useState('')
+
+    interface ResponseCadastrar{
+        erro: boolean;
+        mensagem: string;
+        token?: string
+       
+    } 
 
 
+    const alterarNome = (novoNome: string) => {
+        setUsuario((usuarioAnterior) => ({
+            ...usuarioAnterior,
+            nome: novoNome,
+        }));
+    };
+
+    const alterarEmail = (novoEmail: string) => {
+        setUsuario((usuarioAnterior) => ({
+            ...usuarioAnterior,
+            email: novoEmail,
+        }));
+    };
+
+    const alterarPassword = (novoPassword: string) => {
+        setUsuario((usuarioAnterior) => ({
+            ...usuarioAnterior,
+            password: novoPassword,
+        }));
+
+    };
 
 
-    const Cadastrar = async (e: React.FormEvent) => {
+    const cadastrar = async (e: React.FormEvent) => {
         e.preventDefault(); 
-        
-
-        if (usuario.email || usuario.password || usuario.nome) {
-            setErroCadastrar('Todos os campos devem ser preenchidos!');
-            return;
-        }
         try {
-            const response = await fetch(`${ApiURL}/auth/cadastrar`, {
+            const response = await fetch(`${ApiURL}/auth/cadastro`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ usuario }),
-            })
-        
-            console.log()
-        }}; //ve
+                body: JSON.stringify({
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    password: usuario.password,
+                    tipo: usuario.tipo
+                }),
+            });
+            
+       if (!response.ok){
+        throw new Error ('falha na requisição, verifique');
+       }
+
+       const data: ResponseCadastrar = await response.json();
+       const { erro, mensagem} = data;
+       if (erro) {
+        setErroCadastro(mensagem);
+      } else {
+        router.push('/Login'); //L ou l minusculo
+      }
+        } catch (error){
+            console.error('erro:', error);
+            setErroCadastro('Ocorreu um erro.');
+          }
+        };
+      
+    
+
        
 
     return (
         <div>
             <h1 className={styles.center}>Página de Cadastro</h1>
             <br />
-            <form onSubmit={Cadastrar}>
+            <form onSubmit={cadastrar}>
                 <center>
                     <input
                         className={styles.input}
-                        type="email"
+                        type="text"
+                        id ="nome"
+                        placeholder="Digite seu nome"
+                        value={usuario.nome}
+                        onChange={(e) => alterarNome(e.target.value)}
+                    />
+                    <br />
+                    <br />
+                    <input
+                        className={styles.input}
+                        type="text"
+                        id="email"
                         placeholder="Digite seu email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        value={usuario.email}
+                        onChange={(e) => alterarEmail(e.target.value)}
                     />
                     <br />
                     <br />
                     <input
                         className={styles.input}
-                        type="password"
+                        type="text"
+                        id="password"
                         placeholder="Digite sua senha"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <br />
-                    <br />
-                    <input
-                        className={styles.input}
-                        type="usuario"
-                        placeholder="Insira o seu name"
-                        value={usuario}
-                        onChange={(e) => setUsuario(e.target.value)}
+                        value={usuario.password}
+                        onChange={(e) => alterarPassword(e.target.value)}
                     />
                     <br />
                     <br />
