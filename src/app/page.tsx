@@ -11,12 +11,12 @@ const router = useRouter();
 useEffect(() => {
   const {'restaurant-token' : token} = parseCookies()
   if (!token){
-    router.push('/login')
+    router.push('/Login')
   }
 }, [])
 
 return (
-  //TERMINAR//
+  <h1>Home</h1>
 );
 
 }
