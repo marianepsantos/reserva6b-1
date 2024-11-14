@@ -5,7 +5,6 @@ import { parseCookies, setCookie } from 'nookies';
 import { useRouter } from 'next/navigation';
 import styles from "./page.module.css";
 import Button from "../components/button";
-import Usuario from '../Interfaces/usuario';
 import { ApiURL } from "../config";
 
 
@@ -72,12 +71,8 @@ export default function Login() {
 
     return (
         <div>
-            <Button
-                name="Info 6B"
-                numero={1}
-            />
-            <h1 className={styles.center}>PÁGINA PARA LOGIN</h1>
-            <br />
+            <div className={styles.c}>
+            <div className={styles.card}>
             <form onSubmit={handleSubmit}>
                 <center>
                     <input
@@ -87,8 +82,6 @@ export default function Login() {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-                    <br />
-                    <br />
                     <input
                         className={styles.input}
                         type="password"
@@ -96,12 +89,12 @@ export default function Login() {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <br />
-                    <br />
                     <button className={styles.button} type="submit">Login</button>
                     {errologin && <p className={styles.p}>{errologin}</p>}
                 </center>
             </form>
+            </div>
+          </div>
         </div>
     );
 }
