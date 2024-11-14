@@ -82,14 +82,10 @@ export default function Cadastrar(){
           }
         };
       
-    
-
-       
 
     return (
-        <div>
-            <h1 className={styles.center}>Página de Cadastro</h1>
-            <br />
+        <div className={styles.c}>
+            <div className={styles.card}>
             <form onSubmit={cadastrar}>
                 <center>
                     <input
@@ -100,8 +96,6 @@ export default function Cadastrar(){
                         value={usuario.nome}
                         onChange={(e) => alterarNome(e.target.value)}
                     />
-                    <br />
-                    <br />
                     <input
                         className={styles.input}
                         type="text"
@@ -110,11 +104,9 @@ export default function Cadastrar(){
                         value={usuario.email}
                         onChange={(e) => alterarEmail(e.target.value)}
                     />
-                    <br />
-                    <br />
                     <input
                         className={styles.input}
-                        type="text"
+                        type="password"
                         id="password"
                         placeholder="Digite sua senha"
                         value={usuario.password}
@@ -123,10 +115,11 @@ export default function Cadastrar(){
                     <br />
                     <br />
                     <button className={styles.button} type="submit">Cadastrar</button>
-                    {ErroCadastrar && <p>{ErroCadastrar}</p>}
+                    {ErroCadastrar && <p className= {styles.error}>{ErroCadastrar}</p>}
                   
                 </center>
             </form>
+            </div>
         </div>
     );
     }

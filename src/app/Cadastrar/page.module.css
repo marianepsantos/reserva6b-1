@@ -1,0 +1,52 @@
+/* Estilo do contêiner principal */
+.c {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #ffe4e1;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Estilo do card */
+  .card {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 350px;
+  }
+  
+  /* Estilo para o input */
+  .input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ff69b4; 
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  /* Estilo para o botão */
+  .button {
+    background-color: #ff69b4; 
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+  }
+  
+  .button:hover {
+    background-color: #ff1493; 
+  }
+  
+  /* Estilo para a mensagem de erro */
+  .error {
+    color: #ff4d4d; 
+    margin-top: 10px;
+  }
