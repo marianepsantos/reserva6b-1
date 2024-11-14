@@ -18,8 +18,8 @@ useEffect(() => {
 return (
   <div className={styles.a}>
     <div className={styles.nav}>
-      <Link href="/login">Login</Link>
-      <Link href="/cadastrar">Cadastrar</Link>
+      <Link href="/Login">Login</Link>
+      <Link href="/Cadastrar">Cadastrar</Link>
     </div>
   </div>
 );
