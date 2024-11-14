@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useState } from 'react';
 import { parseCookies, setCookie } from 'nookies';
 import { useRouter } from 'next/navigation';
 import styles from "./page.module.css";
-import Button from "../Components/button";
+import Button from "../components/button";
 import Usuario from '../Interfaces/usuario';
 import { ApiURL } from "../config";
 

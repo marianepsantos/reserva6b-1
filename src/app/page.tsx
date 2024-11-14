@@ -16,7 +16,11 @@ useEffect(() => {
 }, [])
 
 return (
-  <h1>Home</h1>
+  <div className={styles.a}>
+    <div className={styles.nav}>
+      <Link href="/login">Login</Link>
+      <Link href="/cadastrar">Cadastrar</Link>
+    </div>
+  </div>
 );
-
 }
