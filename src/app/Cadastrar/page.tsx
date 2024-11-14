@@ -65,17 +65,16 @@ export default function Cadastrar(){
                 }),
             });
             
-       if (!response.ok){
-        throw new Error ('falha na requisição, verifique');
-       }
+       if (response){
+           const data: ResponseCadastrar = await response.json();
+           const { erro, mensagem} = data;
+           if (erro) {
+            setErroCadastro(mensagem);
+          } else {
+            router.push('/Login'); //L ou l minusculo
+          }
 
-       const data: ResponseCadastrar = await response.json();
-       const { erro, mensagem} = data;
-       if (erro) {
-        setErroCadastro(mensagem);
-      } else {
-        router.push('/Login'); //L ou l minusculo
-      }
+       }
         } catch (error){
             console.error('erro:', error);
             setErroCadastro('Ocorreu um erro.');
